@@ -4,3 +4,6 @@
 <h3><%= @skill.skill_short_description %></h3>
 
 <p><%= @skill.skill_full_description %></p>
+
+<p><%= link_to "Return to home page", skills_path %>
+<p><%= link_to "Edit this skill", edit_skill_path(@skill) %>
