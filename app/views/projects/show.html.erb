@@ -1,1 +1,10 @@
+<img src="<%= @project.project_image_url %>">
 <h1><%= @project.project_name %></h1>
+<h4>See project: <%= @project_link %></h4>
+
+<h3><%= @project.project_short_description %></h3>
+
+<p><%= @project.project_full_description %></p>
+
+<p><%= link_to "Edit this project", edit_skill_project_path(@skill, @project) %></p>
+<p><%= link_to "Return to skill page", skill_path(@skill.id) %></p>
