@@ -1,3 +1,7 @@
 <h1>Edit skill</h1>
 
 <%= render 'form' %>
+
+<p><%= link_to 'Delete this skill', skill_path(@skill),
+:data => {:confirm => "Are you sure you want to delete this skill?",
+:method => "delete"} %></p>
