@@ -2,12 +2,12 @@ class ProjectsController < ApplicationController
 
   def new
     @skill = Skill.find(params[:skill_id])
-    @project = @skill.comments.new
+    @project = @skill.projects.new
   end
 
   def create
     @skill = Skill.find(params[:skill_id])
-    @project = @skill.comments.new(comment_params)
+    @project = @skill.projects.new(project_params)
     if @project.save
       flash[:notice] = "Your project has been added."
       redirect_to skill_path(@skill.id)
@@ -18,13 +18,13 @@ class ProjectsController < ApplicationController
 
   def edit
     @skill = Skill.find(params[:skill_id])
-    @project = @skill.comments.find(params[:id])
+    @project = @skill.projects.find(params[:id])
   end
 
   def update
     @skill = Skill.find(params[:skill_id])
-    @project = @skill.comments.find(params[:id])
-    if @project.update(comment_params)
+    @project = @skill.projects.find(params[:id])
+    if @project.update(project_params)
       flash[:notice] = "Your project has been updated."
       redirect_to skill_path(@skill.id)
     else
@@ -34,14 +34,14 @@ class ProjectsController < ApplicationController
 
   def destroy
     @skill = Skill.find(params[:skill_id])
-    @project = @skill.comments.find(params[:id])
+    @project = @skill.projects.find(params[:id])
     @project.destroy
     redirect_to skill_path(@skill)
   end
 
   private
-  def comment_params
-    params.require(:project).permit(:text, :author)
+  def project_params
+    params.require(:project).permit(:project_name, :project_short_description, :project_full_description, :project_link, :project_image_url)
   end
 
 end
