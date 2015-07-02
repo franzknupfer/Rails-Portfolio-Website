@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
-    <h1 id="header">Franz Knupfer</h1>
+    <div id="header">
+      <h1>Franz Knupfer</h1>
+      <h3>Web Dev, Problem Solver, Creative Thinker</h3>
+    </div>
 
 
     <% @skills.each do |skill| %>
@@ -13,6 +16,10 @@
     <% end %>
   </div>
   <br><br>
-  <h3 id="centered"><%= link_to "Add skill", new_skill_path %></h3>
-  <h5 id="centered">Franz Knupfer personal info</h5>
+  <h3 class="centered"><%= link_to "Add skill", new_skill_path %></h3>
+  <div class="centered">
+    <h5>Franz Knupfer</h5>
+    <h5>3942 SE 29th Avenue</h5>
+    <h5>Portland, OR 97202</h5>
+    <h5>franzknupfer [at] hotmail.com</h5>
 </div>

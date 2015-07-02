@@ -1,20 +1,21 @@
-<img src="<%= @skill.skill_icon %>">
-<h1><%= @skill.skill_name %></h1>
+<div class="profile">
+  <img src="<%= @skill.skill_icon %>">
 
-<h3><%= @skill.skill_short_description %></h3>
+  <h2><%= @skill.skill_short_description %></h2>
 
-<p><%= @skill.skill_full_description %></p>
+  <p><%= @skill.skill_full_description %></p>
 
-<h3><%= @skill.skill_name %> Projects</h3>
+  <h3><%= @skill.skill_name %> Projects</h3>
 
-<% if @skill.projects.any? %>
-  <% @skill.projects.each do |project| %>
-    <%= link_to project.project_name, skill_project_path(@skill, project) %>
+  <% if @skill.projects.any? %>
+    <% @skill.projects.each do |project| %>
+      <%= link_to project.project_name, skill_project_path(@skill, project) %>
+    <% end %>
+  <% else %>
+    <p>There are no projects listed yet.</p>
   <% end %>
-<% else %>
-  <p>There are no projects listed yet.</p>
-<% end %>
-<br><br>
-<p><%= link_to "Add a project", new_skill_project_path(@skill) %>
-<p><%= link_to "Return to home page", skills_path %>
-<p><%= link_to "Edit this skill", edit_skill_path(@skill) %>
+  <br><br>
+  <p><%= link_to "Add a project", new_skill_project_path(@skill) %>
+  <p><%= link_to "Return to home page", skills_path %>
+  <p><%= link_to "Edit this skill", edit_skill_path(@skill) %>
+</div>
