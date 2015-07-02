@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <h1 id="header">Franz Knupfer</h1>
+
+
+    <% @skills.each do |skill| %>
+      <div class="col-md-3">
+        <div class="all-skills">
+          <h4 id="centered"><%= link_to skill.skill_name, skill_path(skill) %></h4>
+          <%= link_to image_tag(skill.skill_icon), skill_path(skill) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <br><br>
+  <h3 id="centered"><%= link_to "Add skill", new_skill_path %></h3>
+  <h5 id="centered">Franz Knupfer personal info</h5>
+</div>
