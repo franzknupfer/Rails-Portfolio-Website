@@ -5,5 +5,16 @@
 
 <p><%= @skill.skill_full_description %></p>
 
+<h3><%= @skill.skill_name %> Projects</h3>
+
+<% if @skill.projects.any? %>
+  <% @skill.projects.each do |project| %>
+    <%= link_to project.project_name, skill_project_path(@skill, project) %>
+  <% end %>
+<% else %>
+  <p>There are no projects listed yet.</p>
+<% end %>
+<br><br>
+<p><%= link_to "Add a project", new_skill_project_path(@skill) %>
 <p><%= link_to "Return to home page", skills_path %>
 <p><%= link_to "Edit this skill", edit_skill_path(@skill) %>

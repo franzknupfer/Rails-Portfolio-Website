@@ -1,0 +1,16 @@
+<% render "layouts/errors", :object => @project %>
+
+<%= bootstrap_form_for [@skill, @project] do |f| %>
+  <%= f.text_field :project_name %>
+  <br>
+  <%= f.text_field :project_short_description, label: "A short description for specific skill show pages" %>
+  <br>
+  <%= f.text_field :project_full_description, label: "A longer description for the project show page" %>
+  <br>
+  <%= f.text_field :project_image_url, label: "Add a screen shot of the project" %>
+  <br>
+  <%= f.text_field :project_link, label: "Add a link to the project" %>
+  <%= f.submit "Add project", class: "btn btn-success" %>
+<% end %>
+<br>
+<%= link_to "Return to home page", skills_path %>
