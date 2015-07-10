@@ -2,6 +2,29 @@
 <%= image_tag @post.attached_image.url(:medium) %>
 <p><%= @post.post_content %></p>
 
+<h3>Comments</h3>
+
+<% if current_user %>
+  <%= link_to "Add a comment", new_post_comment_path(@post) %>
+<% else %>
+  <p><%= link_to "Sign in to post comments.", new_user_session_path %></p>
+<% end %>
+<br><br>
+
+<% if @post.comments.any? %>
+  <% if current_user && current_user.admin? %>
+  <% @post.comments.each do |comment| %>
+    <p><%= comment.comment_content %>  <strong>-<%= comment.comment_author %></strong><%= link_to "X", post_comment_path(@post, comment),
+    :data => {:confirm => "Are you sure you want to delete this comment?",
+    :method => "delete"} %></p>
+  <% end %>
+  <% else %>
+    <% @post.comments.each do |comment| %>
+      <p><%= comment.comment_content %>  <strong>-<%= comment.comment_author %></strong></p>
+    <% end %>
+  <% end %>
+<% end %>
+
 <% if current_user %>
   <% if current_user.admin %>
     <p><%= link_to "Edit post", edit_post_path %></p>

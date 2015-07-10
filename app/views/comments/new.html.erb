@@ -1,0 +1,6 @@
+<h3>Hey there, <%= current_user.username %>!</h3>
+
+<%= bootstrap_form_for [@post, @comment] do |f| %>
+  <%= f.text_area :comment_content, label: "Add your comment" %>
+  <%= f.submit "Add comment", class: "btn btn-success" %>
+<% end %>
