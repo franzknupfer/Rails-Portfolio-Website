@@ -1,9 +1,13 @@
 require 'rails_helper'
+include Warden::Test::Helpers
+Warden.test_mode!
 
 describe "the add a project process" do
   it "adds a project to a skill and then edits that project" do
+    admin = FactoryGirl.create(:admin)
+    login_as(admin)
     visit skills_path
-    click_link "Add skill"
+    click_on "Add skill"
     fill_in 'Skill name', :with => 'Ember'
     fill_in 'A short description for the home page', :with => 'short description'
     fill_in 'A longer description for the show page', :with => 'long description'
@@ -16,8 +20,7 @@ describe "the add a project process" do
     fill_in 'A longer description for the project show page', :with => 'long description'
     fill_in 'Add a link to the project', :with => 'link'
     click_on 'Add project'
-    click_link 'Big Tree'
-    click_link 'Edit this project'
+    click_link 'Edit'
     fill_in "Project name", :with => 'Super Big Tree'
     click_on 'Add project'
     expect(page).to have_content 'Super Big Tree'

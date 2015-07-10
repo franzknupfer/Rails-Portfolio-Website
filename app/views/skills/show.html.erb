@@ -12,6 +12,9 @@
       <h5><%= project.project_name %></h5>
       <p><%= project.project_link %></p>
       <p><%= project.project_full_description %>
+      <% if current_user && current_user.admin? %>
+        <%= link_to "Edit", edit_skill_project_path(@skill, project) %>
+      <% end %>
     <% end %>
   <% else %>
     <p>There are no projects listed yet.</p>
