@@ -9,7 +9,11 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    if current_user && current_user.admin?
+      @post = Post.new
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def create
@@ -24,7 +28,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    if current_user && current_user.admin?
+      @post = Post.find(params[:id])
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def update
