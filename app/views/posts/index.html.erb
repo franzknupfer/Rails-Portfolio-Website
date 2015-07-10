@@ -1,1 +1,9 @@
 <h1>Blog</h1>
+
+<% if @posts.any? %>
+  <% @posts.each do |post| %>
+    <%= post.post_title %>
+  <% end %>
+<% end %>
+
+<%= link_to "New post", new_post_path %>

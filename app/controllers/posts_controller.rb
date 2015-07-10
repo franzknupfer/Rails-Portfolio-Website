@@ -4,11 +4,21 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
+  def show
+    @post = Post.find(params[:id])
+  end
+
   def new
-    @post
+    @post = Post.new
   end
 
   def create
+    @post = Post.new(post_params)
+    if @post.save
+      flash[:notice] = "This post has been saved."
+    else
+      flash[:notice] = "Please try again."
+    end
   end
 
   def edit
@@ -22,5 +32,7 @@ class PostsController < ApplicationController
   end
 
   private
-
+  def post_params
+    params.require(:post).permit(:post_title, :post_content)
+  end
 end
