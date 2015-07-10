@@ -1,1 +1,11 @@
 <h1>Admin Dashboard</h1>
+
+<h3>Total Users: <%= @users.length %></h3>
+
+<h3>User contact information</h3>
+
+<% if @users.any? %>
+  <% @users.each do |user| %>
+    <p><%= user.username %>, <%= user.email %></p>
+  <% end %>
+<% end %>
