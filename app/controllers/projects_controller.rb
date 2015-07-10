@@ -1,4 +1,8 @@
 class ProjectsController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter do
+    redirect_to new_user_session_path unless current_user && current_user.admin?
+  end
 
   def new
     @skill = Skill.find(params[:skill_id])
@@ -48,5 +52,4 @@ class ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(:project_name, :project_short_description, :project_full_description, :project_link, :project_image_url)
   end
-
 end

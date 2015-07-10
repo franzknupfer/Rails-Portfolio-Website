@@ -16,7 +16,9 @@
     <% end %>
   </div>
   <br><br>
-  <h3 class="centered"><%= link_to "Add skill", new_skill_path %></h3>
+  <% if current_user && current_user.admin? %>
+    <h3 class="centered"><%= link_to "Add skill", new_skill_path %></h3>
+  <% end %>
   <div class="centered">
     <h5>Franz Knupfer</h5>
     <h5>3942 SE 29th Avenue</h5>

@@ -34,6 +34,9 @@
             <li class="navbar-right"><%= link_to "Sign up", new_user_registration_path %></li>
             <li class="navbar-right"><%= link_to "Login", new_user_session_path %></li>
           <% end %>
+          <% if user_signed_in? && current_user.admin? %>
+            <li class="navbar-right"><%= link_to "Admin Dashboard", dashboard_path %>
+          <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
         </ul>

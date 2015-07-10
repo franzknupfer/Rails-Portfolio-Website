@@ -9,13 +9,19 @@
 
   <% if @skill.projects.any? %>
     <% @skill.projects.each do |project| %>
-      <%= link_to project.project_name, skill_project_path(@skill, project) %>
+      <h5><%= project.project_name %></h5>
+      <p><%= project.project_link %></p>
+      <p><%= project.project_full_description %>
     <% end %>
   <% else %>
     <p>There are no projects listed yet.</p>
   <% end %>
   <br><br>
-  <p><%= link_to "Add a project", new_skill_project_path(@skill) %>
+
   <p><%= link_to "Return to home page", skills_path %>
-  <p><%= link_to "Edit this skill", edit_skill_path(@skill) %>
+
+  <% if current_user && current_user.admin? %>
+    <p><%= link_to "Add a project", new_skill_project_path(@skill) %>
+    <p><%= link_to "Edit this skill", edit_skill_path(@skill) %>
+  <% end %>
 </div>

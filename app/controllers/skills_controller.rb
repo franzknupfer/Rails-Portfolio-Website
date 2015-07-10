@@ -5,7 +5,11 @@ class SkillsController < ApplicationController
   end
 
   def new
-    @skill = Skill.new
+    if current_user && current_user.admin?
+      @skill = Skill.new
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def create
@@ -23,7 +27,11 @@ class SkillsController < ApplicationController
   end
 
   def edit
-    @skill = Skill.find(params[:id])
+    if current_user && current_user.admin?
+      @skill = Skill.find(params[:id])
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def update
@@ -41,7 +49,7 @@ class SkillsController < ApplicationController
     @skill.destroy
     redirect_to skills_path
   end
-  
+
   private
   def skill_params
     params.require(:skill).permit(:skill_name, :skill_short_description, :skill_full_description, :skill_icon)
