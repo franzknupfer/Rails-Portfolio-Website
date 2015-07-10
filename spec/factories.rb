@@ -16,6 +16,12 @@ FactoryGirl.define do
   factory :post do
     post_title "Test"
     post_content "Test"
+    id 1
+  end
+
+  factory :comment do
+    comment_content "heya"
+    post_id 1
   end
 
   factory :skill do
