@@ -4,15 +4,10 @@ Warden.test_mode!
 
 describe "the add a project process" do
   it "adds a project to a skill and then edits that project" do
+    FactoryGirl.create(:skill)
     admin = FactoryGirl.create(:admin)
     login_as(admin)
     visit skills_path
-    click_on "Add skill"
-    fill_in 'Skill name', :with => 'Ember'
-    fill_in 'A short description for the home page', :with => 'short description'
-    fill_in 'A longer description for the show page', :with => 'long description'
-    fill_in 'Add an icon', :with => 'icon'
-    click_on 'Add skill'
     click_on 'Ember'
     click_link "Add a project"
     fill_in 'Project name', :with => 'Big Tree'
