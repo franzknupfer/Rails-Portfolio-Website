@@ -2,7 +2,8 @@
 
 <% if @posts.any? %>
   <% @posts.each do |post| %>
-    <%= post.post_title %>
+    <%= link_to post.post_title, post_path(post) %>
+    <%= image_tag post.attached_image.url(:medium) %>
   <% end %>
 <% end %>
 
