@@ -29,5 +29,16 @@ FactoryGirl.define do
     skill_short_description "Not as good as Rails."
     skill_full_description "That is all I will say for now."
     skill_icon "a.png"
+    id 1
   end
+
+  factory :project do
+    project_name "Big Tree"
+    project_link "test"
+    project_image_url "test"
+    skill_id 1
+    project_short_description "test"
+    project_full_description "test"
+  end
+
 end

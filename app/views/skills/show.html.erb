@@ -13,7 +13,7 @@
       <p><%= project.project_link %></p>
       <p><%= project.project_full_description %>
       <% if current_user && current_user.admin? %>
-        <%= link_to "Edit", edit_skill_project_path(@skill, project) %>
+        <%= link_to "Edit this project", edit_skill_project_path(@skill, project) %>
       <% end %>
     <% end %>
   <% else %>

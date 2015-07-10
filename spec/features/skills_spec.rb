@@ -14,6 +14,18 @@ describe "the add a skill process" do
     expect(page).to have_content 'Ember'
   end
 
+  it "destroys a skill" do
+    FactoryGirl.create(:skill)
+    admin = FactoryGirl.create(:admin)
+    login_as(admin)
+    visit skills_path
+    click_on "Ember"
+    click_on "Edit this skill"
+    click_on "Delete this skill"
+    expect(page).to have_no_content 'Ember'
+    expect(page).to have_content 'Web Dev, Problem Solver, Creative Thinker'
+  end
+
   it "gives an error when a required skill field is not entered" do
     admin = FactoryGirl.create(:admin)
     login_as(admin)

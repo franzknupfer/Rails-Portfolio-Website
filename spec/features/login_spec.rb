@@ -9,10 +9,6 @@ describe "the create an account and add a comment path" do
     fill_in "Password", :with => "testtest"
     fill_in "Password confirmation", :with => "testtest"
     click_button "Sign up"
-    click_on "Blog"
-    click_on "Test"
-    click_on "Add a comment"
-    fill_in "Add your comment", :with => "Yay!"
-    expect(page).to have_content 'Yay!'
+    expect(page).to have_content 'You have signed up successfully.'
   end
 end

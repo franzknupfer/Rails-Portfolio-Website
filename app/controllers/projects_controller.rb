@@ -16,6 +16,7 @@ class ProjectsController < ApplicationController
       flash[:notice] = "Your project has been added."
       redirect_to skill_path(@skill.id)
     else
+      flash[:notice] = "Please try again."
       render :new
     end
   end
@@ -37,6 +38,7 @@ class ProjectsController < ApplicationController
       flash[:notice] = "Your project has been updated."
       redirect_to skill_path(@skill.id)
     else
+      flash[:notice] = "Please try again."
       render :edit
     end
   end

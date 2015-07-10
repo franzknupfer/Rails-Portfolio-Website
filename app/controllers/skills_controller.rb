@@ -18,6 +18,7 @@ class SkillsController < ApplicationController
       flash[:notice] = "Your skill has been saved."
       redirect_to skills_path
     else
+      flash[:notice] = "Please try again."
       render :new
     end
   end
@@ -40,6 +41,7 @@ class SkillsController < ApplicationController
       flash[:notice] = "Your edits have been saved."
       redirect_to skills_path
     else
+      flash[:notice] = "Please try again."
       render :edit
     end
   end

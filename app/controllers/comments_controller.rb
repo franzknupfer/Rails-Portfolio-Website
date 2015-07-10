@@ -14,7 +14,6 @@ class CommentsController < ApplicationController
       flash[:notice] = "Thanks for your comment!"
       redirect_to post_path(@post)
     else
-      flash[:notice] = "Please try again."
       render :new
     end
   end
