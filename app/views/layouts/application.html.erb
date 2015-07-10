@@ -26,7 +26,6 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <a class="navbar-brand" href="/">Franz Knupfer</a>
-          <li><%= link_to "Blog", posts_path %>
           <% if user_signed_in? %>
             <li class="navbar-right"><%= link_to current_user.email, edit_user_registration_path %></a></li>
             <li class="navbar-right"><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
@@ -34,11 +33,10 @@
             <li class="navbar-right"><%= link_to "Sign up", new_user_registration_path %></li>
             <li class="navbar-right"><%= link_to "Login", new_user_session_path %></li>
           <% end %>
+          <li class="navbar-right"><%= link_to "Blog", posts_path %></li>
           <% if user_signed_in? && current_user.admin? %>
             <li class="navbar-right"><%= link_to "Admin Dashboard", dashboard_path %>
           <% end %>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
