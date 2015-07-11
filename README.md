@@ -8,3 +8,4 @@ Portfolio is built with Ruby on Rails. It includes the following functionality:
 -Administrators can add, edit and delete projects, skills, and blog posts. Only administrators have access to these pages and to the administrative dashboard. Administrators can also delete comments.
 -Photos can be added to blog posts via the Paperclip gem.
 -96% testing coverage using RSpec, FactoryGirl, Capybara and SimpleCov.
+-App is deployed to Heroku: https://aqueous-forest-7049.herokuapp.com. Note that all pictures/icons that were used in testing and production were removed when the database migrated to Heroku.
