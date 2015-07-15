@@ -25,6 +25,14 @@ gem 'devise'
 
 gem 'paperclip'
 
+gem 'will_paginate'
+
+gem 'simple_form'
+
+gem 'momentjs-rails'
+
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+
 
 
 group :development do
@@ -63,6 +71,10 @@ group :test do
 
   gem 'factory_girl_rails'
 
+  gem 'poltergeist'
+
   gem 'simplecov', require: false
+
+  gem 'database_cleaner'
 
 end
