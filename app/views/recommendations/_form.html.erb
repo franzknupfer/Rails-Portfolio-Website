@@ -1,0 +1,8 @@
+<div id="recommendation-header">
+  <h3>Hey there, <%= current_user.username %>!</h3>
+</div>
+
+<%= bootstrap_form_for @recommendation, remote: true do |f| %>
+  <%= f.text_area :recommendation_content, label: "What do you like about Portland?" %>
+  <%= f.submit "Add recommendation", class: "btn btn-success" %>
+<% end %>
