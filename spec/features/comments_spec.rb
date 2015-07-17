@@ -1,7 +1,17 @@
 require 'rails_helper'
 
-describe "the delete a comment path" do
-  it "allows user to add a comment" do
+describe "the edit comment path" do
+  it "allows user to go to add comment path without reloading page", js: true do
+    FactoryGirl.create(:post)
+    user = FactoryGirl.create(:user)
+    login_as(user)
+    visit posts_path
+    click_on "Test"
+    click_on "Add a comment"
+    expect(page).to have_content "Hey there, cato!"
+  end
+
+  it "allows user to add a comment", js:true do
     FactoryGirl.create(:post)
     user = FactoryGirl.create(:user)
     login_as(user)
@@ -10,7 +20,7 @@ describe "the delete a comment path" do
     click_on "Add a comment"
     fill_in "Add your comment", :with => "Yay!"
     click_on "Add comment"
-    expect(page).to have_content "Thanks for your comment!"
+    expect(page).to have_content "Yay!"
   end
 
   it "allows admin to delete a comment" do

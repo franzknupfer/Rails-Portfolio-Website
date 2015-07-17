@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$("#hide_best_of").click(function() {
+  $("#best_of").hide();
+});
