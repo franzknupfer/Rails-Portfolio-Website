@@ -23,7 +23,7 @@ describe "the add a skill process" do
     click_on "Edit this skill"
     click_on "Delete this skill"
     expect(page).to have_no_content 'Ember'
-    expect(page).to have_content 'Web Dev, Problem Solver, Creative Thinker'
+    expect(page).to have_content 'Web Developer, Problem Solver, Creative Thinker'
   end
 
   it "gives an error when a required skill field is not entered" do

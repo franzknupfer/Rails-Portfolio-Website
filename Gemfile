@@ -25,16 +25,6 @@ gem 'devise'
 
 gem 'paperclip'
 
-gem 'will_paginate'
-
-gem 'simple_form'
-
-gem 'momentjs-rails'
-
-gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
-
-
-
 group :development do
 
   gem 'byebug'

@@ -1,0 +1,12 @@
+<h1>Best of Portland</h1>
+
+<p>This feature uses AJAX functionality to automatically load content without reloading the page. Check out some of my favorite things about Portland. Sign in and add your favorites, too.</p>
+
+<%= link_to "Add a recommendation", new_recommendation_path, id: "new_recommendation_link", class: "btn btn-success", remote: true %>
+
+<% if @recommendations.any? %>
+  <% @recommendations.each do |recommendation| %>
+    <%= recommendation.recommendation_content %>
+    <%= recommendation.recommendation_author %>
+  <% end %>
+<% end %>
