@@ -18,16 +18,26 @@
 @import "bootstrap-sprockets"
 @import "bootstrap"
 
+@font-face
+  font-family: "Aventura-Bold"
+  src: font-url('assets/Aventura-Bold.otf') format("truetype")
+
 @media (min-width: 768px)
 
 .navbar-default
   background-color: #74AFAD
   padding: 20px
+  .navbar-brand
+    color: white
+    font-family: Open Sans
+    font-size: 200%
 
-.navbar-default .navbar-brand
+#nav-element
   color: white
-  font-family: arial
-  font-size: 200%
+  font-family: Open Sans
+  font-size: 125%
+  &:hover
+    color: #D9853B
 
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus
@@ -47,14 +57,46 @@
 .navbar-default .navbar-nav > li
   color: white
 
+footer
+  padding-top: 10px
+  margin-top: 45px
+  color: #D9853B
+  small
+    float: left
+    font-family: roboto slab
+  ul
+    float: right
+    list-style: none
+    font-size: 14px
+    font-family: roboto slab
+  ul li
+    float: left
+    margin-left: 15px
+
 #welcome-box
   margin-left: 200px
   margin-right: 200px
-  padding: 5px
+  padding: 20px
+  padding-left: 40px
+  padding-right: 40px
   border-color: #D9853B
   border-radius: 5px
+  background-color: #74AFAD
+  color: white
+
+#skill-header
+  font-size: 18px
+  font-family: Roboto Slab
+  &:hover
+    color: #D9853B
+
+p
+  font-family: Open Sans
+  font-size: 18px
 
 h1
+  font-family: Roboto Slab
+  font-size: 36px
   text-align: center
   color: #D9853B
 
@@ -82,16 +124,14 @@ body
   width: 200px
   text-align: center
   overflow: hidden
-
-.all-skills img
-  width: 60%
-  margin: 1em 2% .2em 2%
+  img
+    width: 60%
+    margin: 1em 2% .2em 2%
 
 .centered
   text-align: center
 
 .profile
   text-align: center
-
-.profile img
-  width: 200px
+  img
+    width: 200px

@@ -1,0 +1,4 @@
+$('form').remove();
+$('#comment-header').remove();
+$('#new_comment_link').show();
+$('#comments').append('<p><%= @comment.comment_content %><strong> -<%= @comment.comment_author %></strong></p>');

@@ -11,10 +11,10 @@ class CommentsController < ApplicationController
     @comment = @post.comments.new(comment_params)
     @comment.comment_author = current_user.username
     if @comment.save
-      flash[:notice] = "Thanks for your comment!"
-      redirect_to post_path(@post)
-    else
-      render :new
+      respond_to do |format|
+        format.html { redirect_to post_url(@post) }
+        format.js
+      end
     end
   end
 
