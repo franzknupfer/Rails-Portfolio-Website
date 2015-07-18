@@ -16,7 +16,7 @@ class SkillsController < ApplicationController
     @skill = Skill.new(skill_params)
     if @skill.save
       flash[:notice] = "Your skill has been saved."
-      redirect_to skills_path
+      redirect_to root_path
     else
       flash[:notice] = "Please try again."
       render :new
@@ -39,7 +39,7 @@ class SkillsController < ApplicationController
     @skill = Skill.find(params[:id])
     if @skill.update(skill_params)
       flash[:notice] = "Your edits have been saved."
-      redirect_to skills_path
+      redirect_to skill_path(@skill)
     else
       flash[:notice] = "Please try again."
       render :edit

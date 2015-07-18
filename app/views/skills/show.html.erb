@@ -1,13 +1,11 @@
 <div class="profile">
-  <img src="<%= @skill.skill_icon %>">
-
-  <h2><%= @skill.skill_short_description %></h2>
-
+  <p><%= image_tag(@skill.skill_icon) %></p>
+  <br>
   <p><%= @skill.skill_full_description %></p>
 
-  <h3><%= @skill.skill_name %> Projects</h3>
 
   <% if @skill.projects.any? %>
+    <h3><%= @skill.skill_name %> Projects</h3>
     <% @skill.projects.each do |project| %>
       <h5><%= project.project_name %></h5>
       <p><%= project.project_link %></p>
@@ -16,12 +14,10 @@
         <%= link_to "Edit this project", edit_skill_project_path(@skill, project) %>
       <% end %>
     <% end %>
-  <% else %>
-    <p>There are no projects listed yet.</p>
   <% end %>
   <br><br>
 
-  <p><%= link_to "Return to home page", skills_path %>
+  <p><%= link_to "Return to home page", root_path %>
 
   <% if current_user && current_user.admin? %>
     <p><%= link_to "Add a project", new_skill_project_path(@skill) %>

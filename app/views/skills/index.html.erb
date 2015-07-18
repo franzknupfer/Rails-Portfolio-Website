@@ -27,15 +27,11 @@
       <h3 class="centered"><%= link_to "Add skill", new_skill_path %></h3>
     <% end %>
     <div class="centered">
-      <p>Franz Knupfer</p>
-      <p>3942 SE 29th Avenue</p>
-      <p>Portland, OR 97202</p>
-      <p>franzknupfer [at] hotmail.com</p>
 
-      <%= link_to "Best of Portland", recommendations_path, id: "best_of_link", class: "btn btn-success", remote: true %>
+      <p>Click on the button below to see AJAX functionality at work.</p>
+      <p><%= link_to "Best of Portland", recommendations_path, id: "best_of_link", class: "btn btn-success", remote: true %></p>
       <br><br>
 
-      <%= image_tag("cool_desktop1.jpeg", id: "home-image", alt: "An image of a desktop with old fashioned tools.") %>
-
+    </div>
   </div>
 </div>

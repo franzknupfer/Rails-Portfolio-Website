@@ -3,9 +3,7 @@
 <%= bootstrap_form_for @skill do |f| %>
   <%= f.text_field :skill_name %>
   <br>
-  <%= f.text_field :skill_short_description, label: "A short description for the home page" %>
-  <br>
-  <%= f.text_field :skill_full_description, label: "A longer description for the show page" %>
+  <%= f.text_area :skill_full_description, label: "Describe this skill" %>
   <br>
   <%= f.text_field :skill_icon, label: "Add an icon" %>
   <br>
