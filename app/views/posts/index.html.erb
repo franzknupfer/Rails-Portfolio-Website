@@ -7,9 +7,10 @@
 
   <% if @posts.any? %>
     <% @posts.each do |post| %>
-      <h3><%= link_to post.post_title, post_path(post) %></h3>
-      <%= image_tag post.attached_image.url(:medium) %>
-      <br><br>
+      <div id="blog-title">
+        <h3><%= link_to post.post_title, post_path(post) %></h3>
+        <h4><%= post.created_at.time.strftime "%B %d, %Y" %></h4>
+      <%= image_tag post.attached_image.url(:medium), id: "blog-pic" %>
       <p><%= post.post_content %></p>
       <br><br>
     <% end %>
