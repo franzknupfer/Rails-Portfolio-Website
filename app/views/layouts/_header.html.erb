@@ -13,7 +13,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <a class="navbar-brand" href="/">Franz Knupfer</a>
+        <a class="pull-left", href="/"><span id="logo"><%= image_tag("ninja-background.svg") %></span></a>
+        <a href="/", class="navbar-brand">Franz Knupfer</a>
         <% if user_signed_in? %>
           <li class="navbar-right"><%= link_to current_user.email, edit_user_registration_path, id: "nav-element" %></a></li>
           <li class="navbar-right"><%= link_to "Sign out", destroy_user_session_path, method: :delete, id: "nav-element" %></li>
