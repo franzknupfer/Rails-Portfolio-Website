@@ -18,3 +18,8 @@
 $("#hide_best_of").click(function() {
   $("#best_of").hide();
 });
+
+$("#hide_comments").click(function() {
+  $("#comments").hide();
+  $("#comments-form").hide();
+});

@@ -1,4 +1,5 @@
 <div id="comments">
+  <h4><%= link_to "Hide comments", posts_path, id: "hide_comments" %></h4>
   <% if @post.comments.any? %>
     <% if current_user && current_user.admin? %>
       <% @post.comments.each do |comment| %>

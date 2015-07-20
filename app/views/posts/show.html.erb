@@ -1,6 +1,9 @@
 <div class="padding">
-  <h1><%= @post.post_title %></h1>
-  <%= image_tag @post.attached_image.url(:medium) %>
+  <div id="blog-title">
+    <h1><%= @post.post_title %></h1>
+    <h4><%= @post.created_at.time.strftime "%B %d, %Y" %></h4>
+  </div>
+  <%= image_tag @post.attached_image.url(:medium), id: "blog-pic" %>
   <p><%= @post.post_content %></p>
 
   <h3>Comments</h3>
@@ -10,7 +13,6 @@
   <% else %>
     <p><%= link_to "Sign in to post comments.", new_user_session_path %></p>
   <% end %>
-  <br><br>
 
   <div id="comments">
     <% if @post.comments.any? %>
