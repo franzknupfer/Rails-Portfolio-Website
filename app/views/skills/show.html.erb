@@ -1,26 +1,28 @@
-<div class="profile">
-  <p><%= image_tag(@skill.skill_icon) %></p>
-  <br>
-  <p><%= @skill.skill_full_description %></p>
+<div class="padding">
+  <div class="profile">
+    <p><%= image_tag(@skill.skill_icon) %></p>
+    <br>
+    <p><%= @skill.skill_full_description %></p>
 
 
-  <% if @skill.projects.any? %>
-    <h3><%= @skill.skill_name %> Projects</h3>
-    <% @skill.projects.each do |project| %>
-      <h5><%= project.project_name %></h5>
-      <p><%= project.project_link %></p>
-      <p><%= project.project_full_description %>
-      <% if current_user && current_user.admin? %>
-        <%= link_to "Edit this project", edit_skill_project_path(@skill, project) %>
+    <% if @skill.projects.any? %>
+      <h3><%= @skill.skill_name %> Projects</h3>
+      <% @skill.projects.each do |project| %>
+        <h5><%= project.project_name %></h5>
+        <p><%= project.project_link %></p>
+        <p><%= project.project_full_description %>
+        <% if current_user && current_user.admin? %>
+          <%= link_to "Edit this project", edit_skill_project_path(@skill, project) %>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-  <br><br>
+    <br><br>
 
-  <p><%= link_to "Return to home page", root_path %>
+    <p><%= link_to "Return to home page", root_path %>
 
-  <% if current_user && current_user.admin? %>
-    <p><%= link_to "Add a project", new_skill_project_path(@skill) %>
-    <p><%= link_to "Edit this skill", edit_skill_path(@skill) %>
-  <% end %>
+    <% if current_user && current_user.admin? %>
+      <p><%= link_to "Add a project", new_skill_project_path(@skill) %>
+      <p><%= link_to "Edit this skill", edit_skill_path(@skill) %>
+    <% end %>
+  </div>
 </div>

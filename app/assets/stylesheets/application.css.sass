@@ -18,13 +18,6 @@
 @import "bootstrap-sprockets"
 @import "bootstrap"
 
-@font-face
-  font-family: "Aventura-Bold"
-  src: font-url('Aventura-Bold.otf') format("truetype")
-
-  font-family: "Bazar"
-  src: font-url('Bazar.ttf') format("truetype")
-
 @media (min-width: 768px)
 
 #logo img
@@ -37,11 +30,14 @@
   border-radius: 0px
   padding-top: 30px
   padding-bottom: 30px
-  background: rgba(116, 175, 173, .8)
+  background: rgba(116, 175, 173, .6)
   .navbar-brand
     color: white
     font-family: Ubuntu
     font-size: 200%
+
+.padding
+  padding-top: 125px
 
 #nav-element
   color: white
@@ -74,15 +70,18 @@ footer
   color: #D9853B
   small
     float: left
-    font-family: roboto slab
+    font-family: Ubuntu
   ul
     float: right
     list-style: none
     font-size: 14px
-    font-family: roboto slab
+    font-family: Ubuntu
   ul li
     float: left
     margin-left: 15px
+
+#home-page
+  padding-top: 400px
 
 #home-image
   width: 100%
@@ -122,10 +121,14 @@ h3
   font-family: Ubuntu
   color: #D9853B
 
+h4
+  font-family: Ubuntu
+  color: #D9853B
+
 a
   color: #558C89
 
-body
+#body
   padding: 25px
   padding-top: 125px
 
@@ -180,6 +183,10 @@ body
 
 #blog-index
   overflow: scroll
+  a
+    color: #D9853B
+    &:hover
+      color: #74AFAD
 
 #blog-title
   text-align: center
@@ -188,3 +195,12 @@ body
   padding-right: 20px
   padding-bottom: 10px
   float: left
+
+#blended
+  background-image: url("cool_desktop.jpeg")
+  background-color: #74AFAD
+  background-blend-mode: multiply
+  height: 400px
+  width: 110%
+  left: 0
+  position: absolute
