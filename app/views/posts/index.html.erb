@@ -15,7 +15,7 @@
         <%= image_tag post.attached_image.url(:medium), id: "blog-pic" %>
         <p><%= post.post_content %></p>
 
-        <h4>Comments: <%= post.comments.length %></h4>
+        <h4>Comments: <div id="length_<%= post.id %>"><%= post.comments.length %></h4></div>
         <h4><%= link_to "Show comments", post_path(post), id: "show_comments_link_#{ post.id }", remote: true  %></h4>
         <% if current_user %>
           <h4><%= link_to "Add a comment", new_post_comment_path(post), id: "new_comment_link_#{ post.id }", remote: true %></h4>

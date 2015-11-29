@@ -2,3 +2,5 @@ $('form').remove();
 $('#comment-header').remove();
 $('#new_comment_link_<%= @post.id %>').show();
 $('#comments').append('<p><%= @comment.comment_content %><strong> -<%= @comment.comment_author %></strong></p>');
+$('#lengthy').remove();
+$('#length_<%= @post.id %>').hide().after('<div id="lengthy"><%= j render ("length") %></div>');
