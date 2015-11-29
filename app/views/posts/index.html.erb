@@ -16,9 +16,9 @@
         <p><%= post.post_content %></p>
 
         <h4>Comments: <%= post.comments.length %></h4>
-        <h4><%= link_to "Show comments", post_path(post), id: "show_comments_link", remote: true  %></h4>
+        <h4><%= link_to "Show comments", post_path(post), id: "show_comments_link_#{ post.id }", remote: true  %></h4>
         <% if current_user %>
-          <h4><%= link_to "Add a comment", new_post_comment_path(post), id: "new_comment_link", remote: true %></h4>
+          <h4><%= link_to "Add a comment", new_post_comment_path(post), id: "new_comment_link_#{ post.id }", remote: true %></h4>
         <% else %>
           <p><%= link_to "Sign in to post comments.", new_user_session_path %></p>
         <% end %>

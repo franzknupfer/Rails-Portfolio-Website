@@ -9,7 +9,7 @@
   <h3>Comments</h3>
 
   <% if current_user %>
-    <%= link_to "Add a comment", new_post_comment_path(@post), id: "new_comment_link", class: "btn btn-success", remote: true %>
+    <%= link_to "Add a comment", new_post_comment_path(@post), id: "new_comment_link_#{ @post.id }", class: "btn btn-success", remote: true %>
   <% else %>
     <p><%= link_to "Sign in to post comments.", new_user_session_path %></p>
   <% end %>
