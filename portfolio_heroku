@@ -1,0 +1,563 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: comments; Type: TABLE; Schema: public; Owner: Franz; Tablespace: 
+--
+
+CREATE TABLE comments (
+    id integer NOT NULL,
+    comment_content character varying,
+    comment_author character varying,
+    post_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE comments OWNER TO "Franz";
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: Franz
+--
+
+CREATE SEQUENCE comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE comments_id_seq OWNER TO "Franz";
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Franz
+--
+
+ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
+
+
+--
+-- Name: posts; Type: TABLE; Schema: public; Owner: Franz; Tablespace: 
+--
+
+CREATE TABLE posts (
+    id integer NOT NULL,
+    post_title character varying,
+    post_content character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    attached_image_file_name character varying,
+    attached_image_content_type character varying,
+    attached_image_file_size integer,
+    attached_image_updated_at timestamp without time zone
+);
+
+
+ALTER TABLE posts OWNER TO "Franz";
+
+--
+-- Name: posts_id_seq; Type: SEQUENCE; Schema: public; Owner: Franz
+--
+
+CREATE SEQUENCE posts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE posts_id_seq OWNER TO "Franz";
+
+--
+-- Name: posts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Franz
+--
+
+ALTER SEQUENCE posts_id_seq OWNED BY posts.id;
+
+
+--
+-- Name: projects; Type: TABLE; Schema: public; Owner: Franz; Tablespace: 
+--
+
+CREATE TABLE projects (
+    id integer NOT NULL,
+    project_name character varying,
+    project_link character varying,
+    project_image_url character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    skill_id integer,
+    project_short_description character varying,
+    project_full_description character varying
+);
+
+
+ALTER TABLE projects OWNER TO "Franz";
+
+--
+-- Name: projects_id_seq; Type: SEQUENCE; Schema: public; Owner: Franz
+--
+
+CREATE SEQUENCE projects_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE projects_id_seq OWNER TO "Franz";
+
+--
+-- Name: projects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Franz
+--
+
+ALTER SEQUENCE projects_id_seq OWNED BY projects.id;
+
+
+--
+-- Name: recommendations; Type: TABLE; Schema: public; Owner: Franz; Tablespace: 
+--
+
+CREATE TABLE recommendations (
+    id integer NOT NULL,
+    recommendation_content character varying,
+    recommendation_author character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE recommendations OWNER TO "Franz";
+
+--
+-- Name: recommendations_id_seq; Type: SEQUENCE; Schema: public; Owner: Franz
+--
+
+CREATE SEQUENCE recommendations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE recommendations_id_seq OWNER TO "Franz";
+
+--
+-- Name: recommendations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Franz
+--
+
+ALTER SEQUENCE recommendations_id_seq OWNED BY recommendations.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: Franz; Tablespace: 
+--
+
+CREATE TABLE schema_migrations (
+    version character varying NOT NULL
+);
+
+
+ALTER TABLE schema_migrations OWNER TO "Franz";
+
+--
+-- Name: skills; Type: TABLE; Schema: public; Owner: Franz; Tablespace: 
+--
+
+CREATE TABLE skills (
+    id integer NOT NULL,
+    skill_name character varying,
+    skill_short_description character varying,
+    skill_full_description character varying,
+    skill_icon character varying
+);
+
+
+ALTER TABLE skills OWNER TO "Franz";
+
+--
+-- Name: skills_id_seq; Type: SEQUENCE; Schema: public; Owner: Franz
+--
+
+CREATE SEQUENCE skills_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE skills_id_seq OWNER TO "Franz";
+
+--
+-- Name: skills_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Franz
+--
+
+ALTER SEQUENCE skills_id_seq OWNED BY skills.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: Franz; Tablespace: 
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    email character varying DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip inet,
+    last_sign_in_ip inet,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    admin boolean DEFAULT false,
+    username character varying
+);
+
+
+ALTER TABLE users OWNER TO "Franz";
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: Franz
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE users_id_seq OWNER TO "Franz";
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Franz
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Franz
+--
+
+ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Franz
+--
+
+ALTER TABLE ONLY posts ALTER COLUMN id SET DEFAULT nextval('posts_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Franz
+--
+
+ALTER TABLE ONLY projects ALTER COLUMN id SET DEFAULT nextval('projects_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Franz
+--
+
+ALTER TABLE ONLY recommendations ALTER COLUMN id SET DEFAULT nextval('recommendations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Franz
+--
+
+ALTER TABLE ONLY skills ALTER COLUMN id SET DEFAULT nextval('skills_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Franz
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Data for Name: comments; Type: TABLE DATA; Schema: public; Owner: Franz
+--
+
+COPY comments (id, comment_content, comment_author, post_id, created_at, updated_at) FROM stdin;
+1	This is a test comment.	\N	\N	2015-07-10 19:05:17.089273	2015-07-10 19:05:17.089273
+2	test comment 2	\N	\N	2015-07-10 19:08:25.328086	2015-07-10 19:08:25.328086
+5	what's up?	Max	3	2015-07-10 19:14:53.954895	2015-07-10 19:14:53.954895
+8	Cute baby!	Melissa	3	2015-07-11 00:07:08.420658	2015-07-11 00:07:08.420658
+32	Hey, that's me!	leo	3	2015-07-17 23:29:58.362733	2015-07-17 23:29:58.362733
+33	Leo is so cute!	franz	3	2015-07-18 05:56:02.531239	2015-07-18 05:56:02.531239
+34	hey!	franz	3	2015-07-18 18:20:44.320181	2015-07-18 18:20:44.320181
+36	working again?	test	3	2015-07-19 08:40:08.706687	2015-07-19 08:40:08.706687
+37	hey there!	test	3	2015-07-20 06:50:47.056183	2015-07-20 06:50:47.056183
+\.
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Franz
+--
+
+SELECT pg_catalog.setval('comments_id_seq', 40, true);
+
+
+--
+-- Data for Name: posts; Type: TABLE DATA; Schema: public; Owner: Franz
+--
+
+COPY posts (id, post_title, post_content, created_at, updated_at, attached_image_file_name, attached_image_content_type, attached_image_file_size, attached_image_updated_at) FROM stdin;
+3	test	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."	2015-07-10 17:48:29.664867	2015-07-18 17:53:19.74698	IMG_2436.jpg	image/jpeg	2674570	2015-07-10 17:48:26.552695
+5	test2	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."	2015-07-10 17:53:29.854767	2015-07-18 17:53:44.131738	IMG_2408.JPG	image/jpeg	1174235	2015-07-10 17:55:24.192074
+4	test3	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."	2015-07-10 17:52:52.192979	2015-07-18 17:53:53.16861	IMG_2475.jpg	image/jpeg	1915485	2015-07-10 17:52:49.625622
+11	Free programming icons	Did you like the icons on the home page? I found them on the DEVICON website at http://devicon.fr/. They're free and easy to set up. Check them out!	2015-07-19 07:51:00.61383	2015-07-19 07:52:27.153018	devicon.png	image/png	165620	2015-07-19 07:52:26.642185
+\.
+
+
+--
+-- Name: posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Franz
+--
+
+SELECT pg_catalog.setval('posts_id_seq', 11, true);
+
+
+--
+-- Data for Name: projects; Type: TABLE DATA; Schema: public; Owner: Franz
+--
+
+COPY projects (id, project_name, project_link, project_image_url, created_at, updated_at, skill_id, project_short_description, project_full_description) FROM stdin;
+3	a	a	a	2015-07-02 19:28:38.643	2015-07-02 19:28:38.643	4	a	a
+4	super	a	a	2015-07-02 19:29:13.34665	2015-07-02 19:29:41.204371	4	a	a
+1	PairUp	This is a link to the project on Github.	http://www.atpm.com/13.01/images/daz-screenshot-large.png	2015-07-02 18:26:56.828253	2015-07-02 20:08:48.417521	1	A cool project	More about this project.
+\.
+
+
+--
+-- Name: projects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Franz
+--
+
+SELECT pg_catalog.setval('projects_id_seq', 5, true);
+
+
+--
+-- Data for Name: recommendations; Type: TABLE DATA; Schema: public; Owner: Franz
+--
+
+COPY recommendations (id, recommendation_content, recommendation_author, created_at, updated_at) FROM stdin;
+1	Lardo makes amazing sandwiches!	test	2015-07-17 18:19:15.397811	2015-07-17 18:19:15.397811
+2	Great waterfall hikes in the gorge. Really love the Wahkeena loop.	test	2015-07-17 18:20:20.400827	2015-07-17 18:20:20.400827
+3	Division has lots of great places for getting beer and cider... Beer Mongers, Apex, Imperial.	test	2015-07-17 18:21:45.903987	2015-07-17 18:21:45.903987
+4	When Pok Pok on Division is busy, check out Pok Pok Noi in NE. It's usually quieter.	test	2015-07-17 18:22:17.232172	2015-07-17 18:22:17.232172
+5	Best place for BBQ in NW is Podnah's Pit, but I like their next door Tex-Mex spot La Taq even better.	franz	2015-07-17 18:54:41.448299	2015-07-17 18:54:41.448299
+6	There's a really fun park near my house!	leo	2015-07-17 23:29:06.748422	2015-07-17 23:29:06.748422
+7	I like walking over the Hawthorne Bridge.	testy	2015-07-17 23:44:49.897999	2015-07-17 23:44:49.897999
+8	Iorio has some of the best Italian food in town.	vickie	2015-07-18 05:59:00.779844	2015-07-18 05:59:00.779844
+9	This is ajax. So the page doesn't reload.	vickie	2015-07-18 05:59:16.131143	2015-07-18 05:59:16.131143
+\.
+
+
+--
+-- Name: recommendations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Franz
+--
+
+SELECT pg_catalog.setval('recommendations_id_seq', 9, true);
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: Franz
+--
+
+COPY schema_migrations (version) FROM stdin;
+20150702162129
+20150702174005
+20150702174556
+20150710160130
+20150710163739
+20150710164335
+20150710164456
+20150710180611
+20150710180921
+20150717165832
+\.
+
+
+--
+-- Data for Name: skills; Type: TABLE DATA; Schema: public; Owner: Franz
+--
+
+COPY skills (id, skill_name, skill_short_description, skill_full_description, skill_icon) FROM stdin;
+11	Heroku	Heroku	I use Heroku for deploying apps, including this website.	heroku-original.svg
+5	JavaScript	This is cool for interactive pages.	I've used JavaScript, jQuery and AJAX to make sites more interactive and to make responsive JavaScript web apps, including fun online games like Pig Dice. Check out this site's AJAX functionality by clicking the "Best of Portland" button on the home page or adding comments to my blog.	javascript-original.svg
+13	PostgreSQL	PostgreSQL	This website uses PostgreSQL for its server-side database. I use Active Record and Rake for migrations and building my database, and I'm also familiar with psql and writing Ruby methods that use SQL commands. I carefully think out my Rails' schema and enjoy working with has-and-belongs-to-many relationships. 	postgresql-original.svg
+2	Rails	I like Rails.	I love Rails! Its MVC structure offers both tremendous structure and freedom to build websites and web applications. I work with many gems in Rails including: Devise and Bcrypt (for user authentication); Rspec, Pry, Poltergeist, Factory Girl, Capybara and SimpleCov (for testing); and PaperClip(for adding images). All of these gems (with the exception of Bcrypt) were used in building this website.	rails-original-wordmark.svg
+7	Sass	This is a way to compile CSS.	Sass has great nesting features to simplify CSS and it also simplifies CSS syntax as well, so I prefer it over basic CSS. This site uses Sass.	sass_icon.png
+1	Ruby	Ruby in the rough	Ruby is what got me into coding in the first place. A friend recommended that I try it out and it became my first language. I can write Ruby methods and create objects and classes and I'm comfortable using Ruby when building sites with Sinatra and Rails. My next step will be learning how to make gems!	ruby-original.svg
+8	Bootstrap	This website was designed with Bootstrap.	Twitter Bootstrap is a powerful framework for adding responsive CSS, HTML and JavaScript to websites and mobile apps. I use Bootstrap for most projects, including this website, other Rails projects, and websites built with Sinatra and Ember.	bootstrap-plain-wordmark.svg
+14	Atom	Atom	Atom has been my programming text editor of choice, though I'm also interested in learning Sublime and Vim.	atom-original.svg
+9	CSS3	CSS	While my experience at Epicodus has focused on back-end programming, I'm also deeply passionate about design as well.	css3-original.svg
+6	Ember	An interesting platform	Ember projects I've worked on include Big Tree, a socially-conscious social media app, and FreeCamper, an app that finds free campsites along the West Coast.	https://upload.wikimedia.org/wikipedia/en/6/69/Ember.js_Logo_and_Mascot.png
+10	Git	Git	I use Git for all coding projects and use the CLI to branch, clone, and commit repos. I'm "deeply committed" to Git and commit frequently when updates are made to projects.	git-original.svg
+12	HTML5	HTML5	I've used HTML5 in Rails and Sinatra apps as well as basic static websites that I've built for myself.	html5-original.svg
+\.
+
+
+--
+-- Name: skills_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Franz
+--
+
+SELECT pg_catalog.setval('skills_id_seq', 14, true);
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: Franz
+--
+
+COPY users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, created_at, updated_at, admin, username) FROM stdin;
+2	test@test2.com	$2a$10$qSZmOPlxXB1lf2BMHyQmoOtzVo86VBlWk8DBeIm/ACx68DSFkwNnu	\N	\N	\N	1	2015-07-10 18:11:51.510586	2015-07-10 18:11:51.510586	::1	::1	2015-07-10 18:11:51.504981	2015-07-10 18:11:51.511909	f	\N
+10	melissa@melissa.com	$2a$10$n/TtdN3qfAgV331nSO4Yt.v21HeRRY5LruMOsL8ygslPnpCppBQHy	\N	\N	\N	1	2015-07-11 00:06:56.361033	2015-07-11 00:06:56.361033	::1	::1	2015-07-11 00:06:56.297922	2015-07-11 00:06:56.362864	f	Melissa
+15	leo@leo.com	$2a$10$89j9LUVrkzL33aN/8Aouf.UkaCWkFIZrKSYcMbLumCjcqZiRUyoHa	\N	\N	\N	1	2015-07-17 23:28:27.364853	2015-07-17 23:28:27.364853	::1	::1	2015-07-17 23:28:27.360895	2015-07-17 23:28:27.366279	f	leo
+3	cato@cato.com	$2a$10$ikJs6g2apY4gccglZEwyIu5HXx9nEj2lpB0DuF/NnxTOMOBD7Ilm2	\N	\N	\N	2	2015-07-10 18:14:50.808813	2015-07-10 18:12:41.425617	::1	::1	2015-07-10 18:12:41.422513	2015-07-10 18:14:50.813241	f	\N
+1	test@test.com	$2a$10$zQXz/5CZyOdjIx8CREKzF.h9c6OKlKYugRDEd1PscPx8P25dBAaNq	\N	\N	\N	8	2015-07-11 04:21:34.087823	2015-07-11 00:06:06.096715	::1	::1	2015-07-10 16:12:31.864556	2015-07-11 04:21:34.090893	f	\N
+11	admin@admin.com	$2a$10$729UjCCUzEiCD2RCrIYxxe55nOWJLF6Xg/AjxkWXN1tC0cVMKXKxm	\N	\N	\N	0	\N	\N	\N	\N	2015-07-15 16:40:22.059107	2015-07-15 16:40:22.059107	f	admin
+14	testy@testy.com	$2a$10$cIENgTPXrMzSJ3euy5h6UeH9yaZSxLe/C/pEIgqWLcplwvxT3teBS	\N	\N	\N	3	2015-07-17 23:41:05.905483	2015-07-17 22:59:59.30363	::1	::1	2015-07-17 22:59:44.638107	2015-07-17 23:41:05.909544	f	testy
+5	lenny@lenny.com	$2a$10$7TrZq4vHQ4bNIgjhTO4dyuswzAWgqQnK/q5hM1ATlmxPfXGt0MUqq	\N	\N	\N	1	2015-07-10 19:02:12.765644	2015-07-10 19:02:12.765644	::1	::1	2015-07-10 19:02:12.76187	2015-07-10 19:02:12.766999	f	Lenny
+6	max@max.com	$2a$10$VrQssx0SNIXuRa8K4txKFeG9e3i7TcIYUweuCZYvGCB8P2rz3g86u	\N	\N	\N	1	2015-07-10 19:03:22.703442	2015-07-10 19:03:22.703442	::1	::1	2015-07-10 19:03:22.699969	2015-07-10 19:03:22.704635	f	Max
+16	vickie@vickie.com	$2a$10$aKFlwBaTcI6/0SSLImI6auKdtVksDiPoebML1c68Yb9d8.KsulJyK	\N	\N	\N	1	2015-07-18 05:58:16.895082	2015-07-18 05:58:16.895082	::1	::1	2015-07-18 05:58:16.890846	2015-07-18 05:58:16.896289	f	vickie
+8	jim@smith.com	$2a$10$2yAn3kw5f3izlTVMgXuzqOCCaSGrrxZi1n4p.ymgTulbVCpBHG95W	\N	\N	\N	2	2015-07-10 20:21:20.245497	2015-07-10 20:20:55.199915	::1	::1	2015-07-10 20:20:55.19625	2015-07-10 20:21:20.248852	f	jim
+9	what@what.com	$2a$10$SR8EmNhHm3Om9gYlNu5mce7L0Q0d5UG6KYvXxG2nbypthOorKiD.y	\N	\N	\N	1	2015-07-10 20:23:24.712482	2015-07-10 20:23:24.712482	::1	::1	2015-07-10 20:23:24.709046	2015-07-10 20:23:24.713648	f	what
+7	jim@jim.com	$2a$10$qzxamhdzjIkakpdd3.hYr.GNvoYVzivTlC/Z28OG6cvn7gczj1Ij.	\N	\N	\N	5	2015-07-10 23:04:27.881459	2015-07-10 21:28:15.571315	::1	::1	2015-07-10 20:08:00.581654	2015-07-10 23:04:27.884329	f	jim
+17	testy@test.com	$2a$10$PplGKAgrs8RDfA3pOGxACO28tO2xiQcqu4hE3hfvD3iYaqKzhDD/i	\N	\N	\N	1	2015-07-19 16:47:49.215814	2015-07-19 16:47:49.215814	::1	::1	2015-07-19 16:47:49.192123	2015-07-19 16:47:49.217663	f	leo
+13	test@testy.com	$2a$10$zQ9m3frX9ibxroKgNQyaBujsX3YeAGEbrttqFvpnu86PmxVOM34ZG	\N	\N	\N	9	2015-07-20 07:47:59.028063	2015-07-20 07:20:23.232106	::1	::1	2015-07-17 16:43:00.727342	2015-07-20 07:47:59.031054	f	test
+12	franzknupfer@hotmail.com	$2a$10$vAIDi6c9OoBQKaTlgl4q9.YEoGEME5E3Ri.Mg9xh12WHnBk9GPW8y	\N	\N	\N	19	2015-07-20 07:56:48.847358	2015-07-20 07:48:36.107015	::1	::1	2015-07-15 16:41:21.151428	2015-07-20 07:56:48.851372	t	franz
+\.
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Franz
+--
+
+SELECT pg_catalog.setval('users_id_seq', 17, true);
+
+
+--
+-- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: Franz; Tablespace: 
+--
+
+ALTER TABLE ONLY comments
+    ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: posts_pkey; Type: CONSTRAINT; Schema: public; Owner: Franz; Tablespace: 
+--
+
+ALTER TABLE ONLY posts
+    ADD CONSTRAINT posts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: projects_pkey; Type: CONSTRAINT; Schema: public; Owner: Franz; Tablespace: 
+--
+
+ALTER TABLE ONLY projects
+    ADD CONSTRAINT projects_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: recommendations_pkey; Type: CONSTRAINT; Schema: public; Owner: Franz; Tablespace: 
+--
+
+ALTER TABLE ONLY recommendations
+    ADD CONSTRAINT recommendations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: skills_pkey; Type: CONSTRAINT; Schema: public; Owner: Franz; Tablespace: 
+--
+
+ALTER TABLE ONLY skills
+    ADD CONSTRAINT skills_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: Franz; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: Franz; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
+
+
+--
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: Franz; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
+
+
+--
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: Franz; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: Franz
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM "Franz";
+GRANT ALL ON SCHEMA public TO "Franz";
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

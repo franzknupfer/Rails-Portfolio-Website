@@ -25,6 +25,8 @@ gem 'devise'
 
 gem 'paperclip'
 
+gem 'newrelic_rpm'
+
 group :development do
 
   gem 'byebug'
